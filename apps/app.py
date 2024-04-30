@@ -1,5 +1,5 @@
 from pathlib import Path
-from flask import Flask
+from flask import Flask, redirect, url_for
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
@@ -41,5 +41,9 @@ def create_app(config_key):
     from apps.auth import views as auth_views
 
     app.register_blueprint(auth_views.auth, url_prefix="/auth")
+
+    @app.route("/")
+    def index():
+        return redirect(url_for("auth.login"))
 
     return app

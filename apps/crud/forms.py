@@ -25,3 +25,13 @@ class UserForm(FlaskForm):
     )
 
     submit = SubmitField("신규 등록")
+
+class GameForm(FlaskForm):
+    gamename = StringField(
+        "게임명",
+        validators=[
+            Length(max=30, message="30문자 이내로 입력해 주세요. "),
+        ],
+    )
+
+    submit = SubmitField("게임 추가")
